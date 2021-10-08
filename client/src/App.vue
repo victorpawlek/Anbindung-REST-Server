@@ -1,7 +1,6 @@
 <template>
-  <v-app>
-    <LogoBar />
-    <router-view :cars='cars'></router-view>
+  <v-app><LogoBar />
+    <v-main> <router-view :cars="cars"></router-view></v-main>
   </v-app>
 </template>
 
@@ -9,7 +8,7 @@
 import LogoBar from '@/components/LogoBar.vue';
 // import CarCards from '@/components/CarCards.vue';
 
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   name: 'Home',
@@ -21,19 +20,19 @@ export default {
 
   data() {
     return {
-      cars: []
-    }
+      cars: [],
+    };
   },
   methods: {
     async getCars() {
-      const a=await axios({
-        method:'GET',
-        url: 'http://localhost:3000/cars'
-      })
-      this.cars=a.data;
-    }
+      const a = await axios({
+        method: 'GET',
+        url: 'http://localhost:3000/cars',
+      });
+      this.cars = a.data;
+    },
   },
-  created () {
+  created() {
     this.getCars();
   },
 };

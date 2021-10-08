@@ -1,5 +1,56 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-container class="d-flex">
+    <v-card class="mx-auto ma-5" max-width="400">
+      <v-img class="white--text align-end" :src="car.image"> </v-img>
+      <v-card-title>{{ car.title }}</v-card-title>
+
+      <div class=" pa-3">
+        <v-card-text>
+          <p>
+            Owner:
+            <span class="font-weight-bold text--primary"
+              >{{ car.owner.firstName }} {{ car.owner.lastName }}</span
+            >
+          </p>
+          <p>
+            Year: <span class="font-weight-bold text--primary">{{ car.yearOfMake }}</span
+            ><br />Miles: <span class="font-weight-bold text--primary">{{ car.miles }}</span>
+          </p>
+          <p>
+            Price: <span class="font-weight-bold text--primary">{{ car.price }}</span>
+          </p>
+          <p>
+            {{ car.description }}
+          </p>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn class="green white--text" :to="`/details/${car.id}`">
+            Details
+          </v-btn>
+        </v-card-actions>
+      </div>
+    </v-card>
+  </v-container>
 </template>
+
+<script>
+export default {
+  props: {
+    id: {
+      type: String,
+      default: '1',
+    },
+    cars: {
+      type: Array,
+    },
+  },
+  computed: {
+    car() {
+      return this.cars.find((car) => car.id == this.id);
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>
