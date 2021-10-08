@@ -1,13 +1,13 @@
 <template>
   <v-app>
     <LogoBar />
-    <CarCards :cars='cars'/>
+    <router-view :cars='cars'></router-view>
   </v-app>
 </template>
 
 <script>
 import LogoBar from '@/components/LogoBar.vue';
-import CarCards from '@/components/CarCards.vue';
+// import CarCards from '@/components/CarCards.vue';
 
 import axios from 'axios'
 
@@ -16,7 +16,7 @@ export default {
 
   components: {
     LogoBar,
-    CarCards,
+    // CarCards,
   },
 
   data() {

@@ -1,0 +1,30 @@
+GET http://127.0.0.1:3000/cars
+
+###
+
+PATCH http://127.0.0.1:3000/cars/2
+Content-Type: application/json
+
+{
+  "status": "sold"
+}
+###
+
+DELETE  http://127.0.0.1:3000/cars/23432
+###
+
+POST  http://127.0.0.1:3000/cars
+Content-Type: application/json
+
+{
+    "title": "Top Deal Of Week!",
+    "status": "available",
+    "price": "189.455 $",
+    "image": "http://localhost:3000/images/car1.png",
+    "miles": 11321,
+    "yearOfMake": 2020,
+    "owner": {
+      "firstName": "Robert",
+      "lastName": "Baumgartner"
+    },
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat."}

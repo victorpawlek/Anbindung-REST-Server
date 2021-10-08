@@ -1,23 +1,11 @@
 <template>
-    <div>
-        <v-app-bar
-  color="grey darken-4"
-  prominent
->
-<v-img
-  max-height="150"
-  max-width="250"
-  src="/logo.png"
-></v-img></v-app-bar>
-    </div>
+    <v-app-bar prominent class="d-flex justify-center" color="white">
+      <v-img max-height="150" max-width="250" src="/logo.png" class=""></v-img
+    ></v-app-bar>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

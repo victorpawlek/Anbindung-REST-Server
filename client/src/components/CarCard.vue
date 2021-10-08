@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <v-card class="mx-auto" max-width="400">
       <v-img class="white--text align-end" height="200px" :src="car.image"> </v-img>
       <v-card-title>{{ car.title }}</v-card-title>
@@ -29,7 +28,6 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-  </v-app>
 </template>
 
 <script>
