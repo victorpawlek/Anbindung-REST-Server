@@ -1,32 +1,53 @@
 <template>
   <v-container class="d-flex">
-    <v-card class="mx-auto ma-5" max-width="400">
+    <v-card v-if="car" class="mx-auto ma-5 " max-width="500">
       <v-img class="white--text align-end" :src="car.image"> </v-img>
-      <v-card-title>{{ car.title }}</v-card-title>
+      <div class="d-flex justify-center">
+        <v-card-title>{{ title }}</v-card-title>
+      </div>
 
       <div class=" pa-3">
-        <v-card-text>
-          <p>
-            Owner:
-            <span class="font-weight-bold text--primary"
-              >{{ car.owner.firstName }} {{ car.owner.lastName }}</span
-            >
-          </p>
-          <p>
-            Year: <span class="font-weight-bold text--primary">{{ car.yearOfMake }}</span
-            ><br />Miles: <span class="font-weight-bold text--primary">{{ car.miles }}</span>
-          </p>
-          <p>
-            Price: <span class="font-weight-bold text--primary">{{ car.price }}</span>
-          </p>
+        <v-card-text
+          ><v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">
+                    Price
+                  </th>
+                  <th class="text-left">
+                    Miles
+                  </th>
+                  <th class="text-left">
+                    Year of Make
+                  </th>
+                  <th class="text-left">
+                    Current owner
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ car.price }}</td>
+                  <td>{{ car.miles }}</td>
+                  <td>{{ car.yearOfMake }}</td>
+                  <td>{{ car.owner.firstName }} {{ car.owner.lastName }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+
           <p>
             {{ car.description }}
           </p>
         </v-card-text>
 
-        <v-card-actions>
-          <v-btn class="green white--text" :to="`/details/${car.id}`">
-            Details
+        <v-card-actions class="d-felx justify-space-between">
+          <v-btn class="blue white--text" :to="`/`">
+            Go Back
+          </v-btn>
+          <v-btn v-if="car.status == 'available'" class="red white--text" @click="order">
+            Order Car
           </v-btn>
         </v-card-actions>
       </div>
@@ -35,6 +56,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     id: {
@@ -45,9 +67,23 @@ export default {
       type: Array,
     },
   },
+
   computed: {
     car() {
       return this.cars.find((car) => car.id == this.id);
+    },
+    title() {
+      if (this.car.status != 'available') {
+        return `${this.car.title} *${this.car.status.toUpperCase()}*`;
+      } else {
+        return this.car.title;
+      }
+    },
+  },
+  methods: {
+    order() {
+      this.$emit('order',this.car);
+
     },
   },
 };

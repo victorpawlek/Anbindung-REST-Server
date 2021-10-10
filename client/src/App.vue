@@ -1,6 +1,7 @@
 <template>
-  <v-app><LogoBar />
-    <v-main> <router-view :cars="cars"></router-view></v-main>
+  <v-app
+    ><LogoBar />
+    <v-main> <router-view :cars="cars" @order="order"></router-view></v-main>
   </v-app>
 </template>
 
@@ -30,6 +31,16 @@ export default {
         url: 'http://localhost:3000/cars',
       });
       this.cars = a.data;
+    },
+    order(car) {
+      axios({
+        method: 'PATCH',
+        url: `http://127.0.0.1:3000/cars/${car.id}`,
+        data: {
+          status: 'reserved',
+        },
+      });
+      this.getCars();
     },
   },
   created() {
