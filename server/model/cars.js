@@ -5,8 +5,8 @@ function getCars() {
 }
 
 function changeStatus(id, status) {
-  cars[cars.indexOf(cars.find((el) => el.id === id))].status = status;
-  return cars[cars.indexOf(cars.find((el) => el.id === id))];
+  const car=cars.find((el) => el.id === id).status = status;
+  return car;
 }
 
 function delCar(id) {
